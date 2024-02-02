@@ -2,21 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/instance: nginx-demeo
-    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: nginx-test
     app.kubernetes.io/name: nginx
-    app.kubernetes.io/version: 1.25.3
-    helm.sh/chart: nginx-15.10.1
-  name: nginx-demeo
+  name: nginx-test
   namespace: test
-  uid: fab10ba9-0274-4c1f-9217-2be1f958b340
 spec:
-  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app.kubernetes.io/instance: nginx-demeo
+      app.kubernetes.io/instance: nginx-test
       app.kubernetes.io/name: nginx
   strategy:
     rollingUpdate:
@@ -27,10 +21,7 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/instance: nginx-test
-        app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: nginx
-        app.kubernetes.io/version: 1.25.3
-        helm.sh/chart: nginx-15.10.1
     spec:
       affinity:
         podAntiAffinity:
