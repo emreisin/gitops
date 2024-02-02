@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: nginx-test
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/version: 1.25.3
+    helm.sh/chart: nginx-15.10.1
+  name: nginx-test
+  namespace: test
+spec:
+  ports:
+  - name: http
+    nodePort: 32581
+    port: 80
+    protocol: TCP
+    targetPort: http
+  selector:
+    app.kubernetes.io/instance: nginx-test
+    app.kubernetes.io/name: nginx
+  type: NodePort
